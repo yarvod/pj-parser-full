@@ -1,0 +1,14 @@
+*.env
+*venv
+
+*.idea
+*.vscode
+*.log
+*.session*
+
+*.DS_Store
+*/dist
+*__pycache__
+*.py[cod]
+*$py.class
+*.pyc
