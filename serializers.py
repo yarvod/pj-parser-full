@@ -29,10 +29,10 @@ class MessageEntityRawSerializer(serializers.Serializer):
 
 class MessageRawSeralizer(serializers.Serializer):
     message = serializers.CharField()
-    entities = serializers.SerializerMethodField()
+    # entities = serializers.SerializerMethodField()
 
-    @staticmethod
-    def get_entities(obj):
-        entities = obj.get_entities_text()
-        return MessageEntityRawSerializer(entities, many=True).data
+    # @staticmethod
+    # def get_entities(obj):
+    #     entities = obj.get_entities_text()
+    #     return MessageEntityRawSerializer(entities, many=True).data
 

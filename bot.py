@@ -39,8 +39,8 @@ def main() -> None:
 
     serialized = MessageRawSeralizer(client.get_messages(channel_username, limit=limit), many=True).data
 
-    with open('data.json', 'w') as f:
-        f.write(json.dumps(serialized, indent=4))
+    with open('data.json', 'w', encoding='utf8') as f:
+        json.dump(serialized, f, indent=4, ensure_ascii=False)
 
 
 
