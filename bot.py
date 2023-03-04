@@ -5,6 +5,7 @@ import argparse
 from dotenv import load_dotenv
 from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetHistoryRequest
+import datetime
 
 from serializers import MessageRawSeralizer
 
@@ -38,9 +39,11 @@ def main() -> None:
     limit = args.limit
 
     serialized = MessageRawSeralizer(client.get_messages(channel_username, limit=limit), many=True).data
-
-    with open('data.json', 'w', encoding='utf8') as f:
+    file_name = f"{channel_username}_{datetime.datetime.now()}.json"
+    with open(file_name, 'w', encoding='utf8') as f:
         json.dump(serialized, f, indent=4, ensure_ascii=False)
+
+    print(f"Спарсено {len(serialized)} постов")
 
 
 
