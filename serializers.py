@@ -25,10 +25,16 @@ class MessageEntityRawSerializer(serializers.Serializer):
     @staticmethod
     def get_entity(obj):
         return EntityRawSerializer(obj[0]).data
+    
+
+class MessageReaction(serializers.Serializer):
+    count = serializers.IntegerField()
+    reaction = serializers.CharField()
 
 
 class MessageRawSeralizer(serializers.Serializer):
     message = serializers.CharField()
+    reactions = MessageReaction(source='reactions.results', many=True, allow_null=True)
     # entities = serializers.SerializerMethodField()
 
     # @staticmethod

@@ -38,7 +38,8 @@ def main() -> None:
     channel_username=args.channel
     limit = args.limit
 
-    serialized = MessageRawSeralizer(client.get_messages(channel_username, limit=limit), many=True).data
+    messages = client.get_messages(channel_username, limit=limit)
+    serialized = MessageRawSeralizer(messages, many=True).data
     file_name = f"data/{channel_username}_{datetime.datetime.now()}.json"
     with open(file_name, 'w', encoding='utf8') as f:
         json.dump(serialized, f, indent=4, ensure_ascii=False)
